@@ -1010,6 +1010,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b4a0098001af1f4796577dc19035957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myAtackBoxCollider: {fileID: 1383130558}
 --- !u!61 &1383130558
 BoxCollider2D:
   m_ObjectHideFlags: 0
