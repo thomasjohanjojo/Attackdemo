@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
+    public float pushBackForceOfFirstAttack;
 
     public BoxCollider2D myAtackBoxCollider;
     public float playerFacingDirection;
@@ -29,9 +30,15 @@ public class Attack : MonoBehaviour
             Debug.Log("Collision with enemy successfully detected");
 
             enemyRigidBody = collision.gameObject.GetComponent<Rigidbody2D>();
-            if(enemyRigidBody)
+            if (enemyRigidBody)
             {
-                Debug.Log("Got rigidbody");
+                Debug.Log("Enemy rigidbody attached");
+                //if (Input.GetButtonDown("Fire1") == true)
+                //{
+                    Vector2 pushBackForceToAddAsVector = new Vector2(playerFacingDirection * pushBackForceOfFirstAttack, 0f);
+                    enemyRigidBody.AddForce(pushBackForceToAddAsVector, ForceMode2D.Impulse);
+                    Debug.Log("pushed");
+                //}
             }
         }
     }
