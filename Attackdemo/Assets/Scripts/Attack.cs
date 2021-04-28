@@ -6,6 +6,7 @@ public class Attack : MonoBehaviour
 {
     public float pushBackForceOfFirstAttack;
 
+    public bool isAttackButtonPressed;
     public BoxCollider2D myAtackBoxCollider;
     public float playerFacingDirection;
     public Rigidbody2D enemyRigidBody;
@@ -21,6 +22,20 @@ public class Attack : MonoBehaviour
     void Update()
     {
         CheckPlayerFacingDirection();
+        CheckIfAttackButtonIsPressedSinceInputCanOnlyBeTakenThroughUpdateMethod();
+    }
+
+
+    void CheckIfAttackButtonIsPressedSinceInputCanOnlyBeTakenThroughUpdateMethod()
+    {
+        if(Input.GetAxisRaw("Fire1") > 0)
+        {
+            isAttackButtonPressed = true;
+        }
+        else
+        {
+            isAttackButtonPressed = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -33,12 +48,13 @@ public class Attack : MonoBehaviour
             if (enemyRigidBody)
             {
                 Debug.Log("Enemy rigidbody attached");
-                //if (Input.GetButtonDown("Fire1") == true)
-                //{
+                
+                if(isAttackButtonPressed == true)
+                {
                     Vector2 pushBackForceToAddAsVector = new Vector2(playerFacingDirection * pushBackForceOfFirstAttack, 0f);
                     enemyRigidBody.AddForce(pushBackForceToAddAsVector, ForceMode2D.Impulse);
                     Debug.Log("pushed");
-                //}
+                }
             }
         }
     }
