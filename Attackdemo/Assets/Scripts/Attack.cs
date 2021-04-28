@@ -7,6 +7,8 @@ public class Attack : MonoBehaviour
     public float pushBackForceOfFirstAttack;
 
     public bool isAttackButtonPressed;
+
+
     public BoxCollider2D myAtackBoxCollider;
     public float playerFacingDirection;
     public Rigidbody2D enemyRigidBody;
@@ -23,8 +25,24 @@ public class Attack : MonoBehaviour
     {
         CheckPlayerFacingDirection();
         CheckIfAttackButtonIsPressedSinceInputCanOnlyBeTakenThroughUpdateMethod();
+        IfAttackButtonIsPressedAndEnemyHasBeenDetectedThenPushTheEnemy();
+        
     }
 
+    void IfAttackButtonIsPressedAndEnemyHasBeenDetectedThenPushTheEnemy()
+    {
+        if (enemyRigidBody)
+        {
+            Debug.Log("Enemy rigidbody attached");
+
+            if (isAttackButtonPressed == true)
+            {
+                Vector2 pushBackForceToAddAsVector = new Vector2(playerFacingDirection * pushBackForceOfFirstAttack, 0f);
+                enemyRigidBody.AddForce(pushBackForceToAddAsVector, ForceMode2D.Impulse);
+                Debug.Log("pushed");
+            }
+        }
+    }
 
     void CheckIfAttackButtonIsPressedSinceInputCanOnlyBeTakenThroughUpdateMethod()
     {
@@ -45,17 +63,7 @@ public class Attack : MonoBehaviour
             Debug.Log("Collision with enemy successfully detected");
 
             enemyRigidBody = collision.gameObject.GetComponent<Rigidbody2D>();
-            if (enemyRigidBody)
-            {
-                Debug.Log("Enemy rigidbody attached");
-                
-                if(isAttackButtonPressed == true)
-                {
-                    Vector2 pushBackForceToAddAsVector = new Vector2(playerFacingDirection * pushBackForceOfFirstAttack, 0f);
-                    enemyRigidBody.AddForce(pushBackForceToAddAsVector, ForceMode2D.Impulse);
-                    Debug.Log("pushed");
-                }
-            }
+            
         }
     }
 
