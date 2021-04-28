@@ -7,6 +7,7 @@ public class Attack : MonoBehaviour
 
     public BoxCollider2D myAtackBoxCollider;
     public float playerFacingDirection;
+    public Rigidbody2D enemyRigidBody;
 
 
     // Start is called before the first frame update
@@ -26,6 +27,12 @@ public class Attack : MonoBehaviour
         if (collision.tag == "Enemy")
         {
             Debug.Log("Collision with enemy successfully detected");
+
+            enemyRigidBody = collision.gameObject.GetComponent<Rigidbody2D>();
+            if(enemyRigidBody)
+            {
+                Debug.Log("Got rigidbody");
+            }
         }
     }
 
