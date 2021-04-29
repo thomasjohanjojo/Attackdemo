@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
+    public Animator animator;
     public float pushBackForceOfFirstAttack;
 
     public bool isAttackButtonPressed;
@@ -14,12 +15,13 @@ public class Attack : MonoBehaviour
     public BoxCollider2D myAtackBoxCollider;
     public float playerFacingDirection;
     public Rigidbody2D enemyRigidBody;
+    
 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -42,9 +44,13 @@ public class Attack : MonoBehaviour
 
             if (isAttackButtonPressed == true)
             {
+                
                 Vector2 pushBackForceToAddAsVector = new Vector2(playerFacingDirection * pushBackForceOfFirstAttack, 0f);
+                
                 enemyRigidBody.AddForce(pushBackForceToAddAsVector, ForceMode2D.Impulse);
+                
                 Debug.Log("pushed");
+                
                 enemyRigidBody = null; // to free up the rigidbody reference
             }
         }
@@ -55,6 +61,7 @@ public class Attack : MonoBehaviour
         if (Input.GetAxisRaw("Fire1") > 0)
         {
             isAttackButtonPressed = true;
+            animator.Play("attack_Kick");
         }
         else
         {

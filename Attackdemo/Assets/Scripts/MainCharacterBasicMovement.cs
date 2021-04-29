@@ -13,6 +13,7 @@ public class MainCharacterBasicMovement : MonoBehaviour
     public bool canMove;
     public bool isMoving;
     private float playerHorizontalInputValue;
+    Animator animator;
 
     Rigidbody2D maincharacterRigidbody;
 

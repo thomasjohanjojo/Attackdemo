@@ -635,7 +635,7 @@ GameObject:
   - component: {fileID: 638003371}
   m_Layer: 6
   m_Name: barrel_0 (1)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -726,7 +726,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 638003367}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.91, y: 2.14, z: 0}
+  m_LocalPosition: {x: -1.05, y: -0.79, z: 0}
   m_LocalScale: {x: 0.3817857, y: 0.3728368, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -744,8 +744,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
+  m_Mass: 5
+  m_LinearDrag: 3
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -1126,7 +1126,7 @@ GameObject:
   - component: {fileID: 815608096}
   m_Layer: 6
   m_Name: barrel_0
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1217,7 +1217,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 815608092}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.41, y: -0.05, z: 0}
+  m_LocalPosition: {x: -6.27, y: -1.05, z: 0}
   m_LocalScale: {x: 0.3817857, y: 0.3728368, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1235,8 +1235,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
+  m_Mass: 5
+  m_LinearDrag: 3
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -2373,7 +2373,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1383130550}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.75, y: 0.48, z: 0}
+  m_LocalPosition: {x: -3.5, y: 0.41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 821092051}
@@ -2473,8 +2473,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b4a0098001af1f4796577dc19035957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushBackForceOfFirstAttack: 1
-  isAttackButtonPressed: 1
+  animator: {fileID: 0}
+  pushBackForceOfFirstAttack: 2
+  isAttackButtonPressed: 0
   DoPushAttackBooleanForTheWholeScript: 1
   myAtackBoxCollider: {fileID: 1383130559}
   playerFacingDirection: 0
@@ -2492,7 +2493,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.1730423, y: 0}
+  m_Offset: {x: 1.3069755, y: -0.38268733}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2503,7 +2504,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.9032078, y: 2.45}
+  m_Size: {x: 0.5598357, y: 0.90710187}
   m_EdgeRadius: 0
 --- !u!1 &1420378211
 GameObject:
@@ -2744,7 +2745,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1496347567}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.02, y: -1.253, z: 0}
+  m_LocalPosition: {x: -0.89, y: -1.253, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1383130553}
@@ -2878,7 +2879,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1585506917}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.01, y: -1.253, z: 0}
+  m_LocalPosition: {x: 0.86, y: -1.253, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1383130553}

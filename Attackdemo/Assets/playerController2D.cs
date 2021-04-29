@@ -49,29 +49,39 @@ public class playerController2D : MonoBehaviour
             isGrounded = false;
             animator.Play("player_jump");
         }
-        if(Input.GetKey("d") || Input.GetKey("right"))
+        if (Input.GetKey("d") || Input.GetKey("right"))
         {
             rd2d.velocity = new Vector2(runSpeed, rd2d.velocity.y);
-            if(isGrounded)
+            if (isGrounded)
                 animator.Play("player_run");
             transform.eulerAngles = new Vector3(0, 0, 0);
-            
+
 
         }
         else if (Input.GetKey("a") || Input.GetKey("left"))
         {
             rd2d.velocity = new Vector2(-10, rd2d.velocity.y);
-            if(isGrounded)
+            if (isGrounded)
                 animator.Play("player_run");
-            
+
             transform.eulerAngles = new Vector3(0, 180, 0);
 
         }
         else
-        {   if(isGrounded)
-                animator.Play("idle");
+        {
+            if (isGrounded)
+            {
+                if (animator.GetCurrentAnimatorStateInfo(0).IsName("attack_Kick"))
+                {
+                    
+                }
+                else
+                {
+                    animator.Play("idle");
+                }
+                rd2d.velocity = new Vector2(0, rd2d.velocity.y);
 
-            rd2d.velocity = new Vector2(0, rd2d.velocity.y);
+            }
         }
         if ((Input.GetKey("w") || Input.GetKey("up"))&&isGrounded)
         {
