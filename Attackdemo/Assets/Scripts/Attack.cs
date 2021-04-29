@@ -8,6 +8,8 @@ public class Attack : MonoBehaviour
 
     public bool isAttackButtonPressed;
 
+    public bool DoPushAttackBooleanForTheWholeScript = true;
+
 
     public BoxCollider2D myAtackBoxCollider;
     public float playerFacingDirection;
@@ -23,9 +25,12 @@ public class Attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckPlayerFacingDirection();
-        CheckIfAttackButtonIsPressedSinceInputCanOnlyBeTakenThroughUpdateMethod();
-        IfAttackButtonIsPressedAndEnemyHasBeenDetectedThenPushTheEnemy();
+        if (DoPushAttackBooleanForTheWholeScript)
+        {
+            CheckPlayerFacingDirection();
+            CheckIfAttackButtonIsPressedSinceInputCanOnlyBeTakenThroughUpdateMethod();
+            IfAttackButtonIsPressedAndEnemyHasBeenDetectedThenPushTheEnemy();
+        }
         
     }
 
@@ -40,7 +45,7 @@ public class Attack : MonoBehaviour
                 Vector2 pushBackForceToAddAsVector = new Vector2(playerFacingDirection * pushBackForceOfFirstAttack, 0f);
                 enemyRigidBody.AddForce(pushBackForceToAddAsVector, ForceMode2D.Impulse);
                 Debug.Log("pushed");
-                enemyRigidBody = null;
+                enemyRigidBody = null; // to free up the rigidbody reference
             }
         }
     }
@@ -57,7 +62,7 @@ public class Attack : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "Enemy")
         {
