@@ -40,6 +40,7 @@ public class Attack : MonoBehaviour
                 Vector2 pushBackForceToAddAsVector = new Vector2(playerFacingDirection * pushBackForceOfFirstAttack, 0f);
                 enemyRigidBody.AddForce(pushBackForceToAddAsVector, ForceMode2D.Impulse);
                 Debug.Log("pushed");
+                enemyRigidBody = null;
             }
         }
     }
