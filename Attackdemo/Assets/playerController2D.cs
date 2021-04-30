@@ -47,7 +47,15 @@ public class playerController2D : MonoBehaviour
         else
         {
             isGrounded = false;
-            animator.Play("player_jump");
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("attack_JumpKick"))
+            {
+
+            }
+            else
+            {
+                animator.Play("attack_Jump");
+            }
+            
         }
         if (Input.GetKey("d") || Input.GetKey("right"))
         {
@@ -85,8 +93,10 @@ public class playerController2D : MonoBehaviour
         }
         if ((Input.GetKey("w") || Input.GetKey("up"))&&isGrounded)
         {
-            rd2d.velocity = new Vector2(rd2d.velocity.x, jumpSpeed);
+            
             animator.Play("player_jump");
+            rd2d.velocity = new Vector2(rd2d.velocity.x, jumpSpeed);
+           
         }
     }
 }

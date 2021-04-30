@@ -15,7 +15,14 @@ public class Attack : MonoBehaviour
     public BoxCollider2D myAtackBoxCollider;
     public float playerFacingDirection;
     public Rigidbody2D enemyRigidBody;
-    
+    public bool isGrounded;
+    [SerializeField]
+    Transform groundCheck;
+    [SerializeField]
+    Transform groundCheckR;
+    [SerializeField]
+    Transform groundCheckL;
+
 
 
     // Start is called before the first frame update
@@ -27,6 +34,17 @@ public class Attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if ((Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"))) ||
+                 (Physics2D.Linecast(transform.position, groundCheckR.position, 1 << LayerMask.NameToLayer("Ground"))) ||
+                  (Physics2D.Linecast(transform.position, groundCheckL.position, 1 << LayerMask.NameToLayer("Ground"))))
+        {
+            isGrounded = true;
+
+        }
+        else
+        {
+            isGrounded = false;
+        }
         if (DoPushAttackBooleanForTheWholeScript)
         {
             CheckPlayerFacingDirection();
@@ -61,7 +79,15 @@ public class Attack : MonoBehaviour
         if (Input.GetAxisRaw("Fire1") > 0)
         {
             isAttackButtonPressed = true;
-            animator.Play("attack_Kick");
+            if (!isGrounded)
+            {
+                animator.Play("attack_JumpKick");
+            }
+            else
+            {
+                animator.Play("attack_Kick");
+            }
+            
         }
         else
         {

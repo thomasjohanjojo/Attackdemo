@@ -726,7 +726,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 638003367}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.05, y: -0.79, z: 0}
+  m_LocalPosition: {x: 3.59, y: -0.23, z: 0}
   m_LocalScale: {x: 0.3817857, y: 0.3728368, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1217,7 +1217,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 815608092}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.27, y: -1.05, z: 0}
+  m_LocalPosition: {x: 3.52, y: 2.7, z: 0}
   m_LocalScale: {x: 0.3817857, y: 0.3728368, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2480,6 +2480,10 @@ MonoBehaviour:
   myAtackBoxCollider: {fileID: 1383130559}
   playerFacingDirection: 0
   enemyRigidBody: {fileID: 0}
+  isGrounded: 0
+  groundCheck: {fileID: 821092051}
+  groundCheckR: {fileID: 1585506918}
+  groundCheckL: {fileID: 1496347568}
 --- !u!61 &1383130559
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2715,7 +2719,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1422397144}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.05, y: 2.05, z: 0}
+  m_LocalPosition: {x: -5, y: 4.67, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
