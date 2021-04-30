@@ -844,6 +844,7 @@ GameObject:
   - component: {fileID: 1383130554}
   - component: {fileID: 1383130558}
   - component: {fileID: 1383130557}
+  - component: {fileID: 1383130559}
   m_Layer: 0
   m_Name: player_0 (1)
   m_TagString: Untagged
@@ -1042,6 +1043,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.7950382, y: 2.1616893}
   m_EdgeRadius: 0
+--- !u!114 &1383130559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383130550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1433500f5f3e36148ae376dedd105c56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted: 0
+  pushBackScript: {fileID: 1383130557}
 --- !u!1 &1422397144
 GameObject:
   m_ObjectHideFlags: 0
@@ -1054,6 +1069,7 @@ GameObject:
   - component: {fileID: 1422397147}
   - component: {fileID: 1422397146}
   - component: {fileID: 1422397145}
+  - component: {fileID: 1422397149}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -1174,6 +1190,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1422397149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422397144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ead1ff4bb6997940ad159319d1a5a79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!1 &1642934741
 GameObject:
   m_ObjectHideFlags: 0
