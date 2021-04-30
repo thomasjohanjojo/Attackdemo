@@ -1011,7 +1011,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b4a0098001af1f4796577dc19035957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushBackForceOfFirstAttack: 2
+  pushBackForceOfFirstAttack: 1
   isAttackButtonPressed: 0
   DoPushAttackBooleanForTheWholeScript: 1
   myAtackBoxCollider: {fileID: 1383130558}

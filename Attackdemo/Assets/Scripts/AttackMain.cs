@@ -41,7 +41,7 @@ public class AttackMain : MonoBehaviour
 
                 if(attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted == 0)
                 {
-                    pushBackScript.DoPushAttackBooleanForTheWholeScript = true;
+                    
                     statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfFirstAttack);
                     //Do The animation call in this line
                     pushBackScript.DoPushAttackBooleanForTheWholeScript = false;
@@ -58,6 +58,7 @@ public class AttackMain : MonoBehaviour
                 {
                     statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfThirdAttack);
                     statusSciptOfEnemy = null;
+                    pushBackScript.DoPushAttackBooleanForTheWholeScript = true;
                 }
 
 
