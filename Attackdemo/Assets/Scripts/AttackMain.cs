@@ -11,6 +11,7 @@ public class AttackMain : MonoBehaviour
     public int damageOfFirstAttack;
     public int damageOfSecondAttack;
     public int damageOfThirdAttack;
+    public Statuses statusSciptOfEnemy;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,13 +21,15 @@ public class AttackMain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        AttackWhenAttackButtonIsPressed();
     }
 
     public void AttackWhenAttackButtonIsPressed()
     {
         if(pushBackScript.enemyRigidBody)
         {
+            statusSciptOfEnemy = pushBackScript.enemyRigidBody.gameObject.GetComponent<Statuses>();
+            
             if(Input.GetButtonDown("Fire1"))
             {
                 attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted++;
@@ -38,7 +41,23 @@ public class AttackMain : MonoBehaviour
 
                 if(attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted == 0)
                 {
+                    pushBackScript.DoPushAttackBooleanForTheWholeScript = true;
+                    statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfFirstAttack);
+                    //Do The animation call in this line
+                    pushBackScript.DoPushAttackBooleanForTheWholeScript = false;
+                    statusSciptOfEnemy = null;
+                }
 
+                if(attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted == 1)
+                {
+                    statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfSecondAttack);
+                    statusSciptOfEnemy = null;
+                }
+
+                if(attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted == 2)
+                {
+                    statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfThirdAttack);
+                    statusSciptOfEnemy = null;
                 }
 
 
