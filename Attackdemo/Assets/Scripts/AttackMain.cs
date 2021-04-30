@@ -58,6 +58,7 @@ public class AttackMain : MonoBehaviour
                 {
                     statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfThirdAttack);
                     statusSciptOfEnemy = null;
+                    //ignore this comment
                     pushBackScript.DoPushAttackBooleanForTheWholeScript = true;
                 }
 
