@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
+
+    public Animator animator;
+
     public float pushBackForceOfFirstAttack;
 
     public bool isAttackButtonPressed;
@@ -15,26 +18,48 @@ public class Attack : MonoBehaviour
     public float playerFacingDirection;
     public Rigidbody2D enemyRigidBody;
 
+    public bool isGrounded;
+    [SerializeField]
+    Transform groundCheck;
+    [SerializeField]
+    Transform groundCheckR;
+    [SerializeField]
+    Transform groundCheckL;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+
+
+        if ((Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"))) ||
+                 (Physics2D.Linecast(transform.position, groundCheckR.position, 1 << LayerMask.NameToLayer("Ground"))) ||
+                  (Physics2D.Linecast(transform.position, groundCheckL.position, 1 << LayerMask.NameToLayer("Ground"))))
+        {
+            isGrounded = true;
+
+        }
+        else
+        {
+            isGrounded = false;
+        }
         if (DoPushAttackBooleanForTheWholeScript)
         {
             CheckPlayerFacingDirection();
-            //CheckIfAttackButtonIsPressedSinceInputCanOnlyBeTakenThroughUpdateMethod();
+            CheckIfAttackButtonIsPressedSinceInputCanOnlyBeTakenThroughUpdateMethod();
             IfAttackButtonIsPressedAndEnemyHasBeenDetectedThenPushTheEnemy();
         }
-        
+
     }
 
-    public void IfAttackButtonIsPressedAndEnemyHasBeenDetectedThenPushTheEnemy()
+    void IfAttackButtonIsPressedAndEnemyHasBeenDetectedThenPushTheEnemy()
     {
         if (enemyRigidBody)
         {
@@ -42,25 +67,35 @@ public class Attack : MonoBehaviour
 
             if (isAttackButtonPressed == true)
             {
+                
                 Vector2 pushBackForceToAddAsVector = new Vector2(playerFacingDirection * pushBackForceOfFirstAttack, 0f);
+                
                 enemyRigidBody.AddForce(pushBackForceToAddAsVector, ForceMode2D.Impulse);
+                
                 Debug.Log("pushed");
                 isAttackButtonPressed = false;
+                
                 enemyRigidBody = null; // to free up the rigidbody reference
             }
         }
     }
 
-    public void CheckIfAttackButtonIsPressedSinceInputCanOnlyBeTakenThroughUpdateMethod()
+    void CheckIfAttackButtonIsPressedSinceInputCanOnlyBeTakenThroughUpdateMethod()
     {
-        if(Input.GetAxisRaw("Fire1") > 0)
+        if (Input.GetAxisRaw("Fire1") > 0)
         {
-            isAttackButtonPressed = true;
+            
+            if (!isGrounded)
+            {
+                animator.Play("attack_JumpKick");
+            }
+            else
+            {
+                animator.Play("attack_Kick");
+            }
+            
         }
-        else
-        {
-            isAttackButtonPressed = false;
-        }
+       
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -70,7 +105,7 @@ public class Attack : MonoBehaviour
             Debug.Log("Collision with enemy successfully detected");
 
             enemyRigidBody = collision.gameObject.GetComponent<Rigidbody2D>();
-            
+
         }
     }
 
@@ -86,7 +121,7 @@ public class Attack : MonoBehaviour
             playerFacingDirection = -1;
 
         }
+
     }
 
-
-}
+    
