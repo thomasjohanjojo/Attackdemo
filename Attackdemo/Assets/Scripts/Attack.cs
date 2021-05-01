@@ -8,7 +8,7 @@ public class Attack : MonoBehaviour
 
     public bool isAttackButtonPressed;
 
-    public bool DoPushAttackBooleanForTheWholeScript = true;
+    public bool DoPushAttackBooleanForTheWholeScript;
 
 
     public BoxCollider2D myAtackBoxCollider;
