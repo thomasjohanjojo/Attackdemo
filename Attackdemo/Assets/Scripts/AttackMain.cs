@@ -29,6 +29,7 @@ public class AttackMain : MonoBehaviour
         if(pushBackScript.enemyRigidBody)
         {
             statusSciptOfEnemy = pushBackScript.enemyRigidBody.gameObject.GetComponent<Statuses>();
+            Debug.Log("Entered the main attack script");
 
 
             if (Input.GetKeyDown(KeyCode.Mouse0) == true)
