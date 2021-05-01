@@ -8,7 +8,7 @@ public class Attack : MonoBehaviour
 
     public bool isAttackButtonPressed;
 
-    public bool DoPushAttackBooleanForTheWholeScript;
+    public bool DoPushAttackBooleanForTheWholeScript = true;
 
 
     public BoxCollider2D myAtackBoxCollider;
@@ -28,7 +28,7 @@ public class Attack : MonoBehaviour
         if (DoPushAttackBooleanForTheWholeScript)
         {
             CheckPlayerFacingDirection();
-            CheckIfAttackButtonIsPressedSinceInputCanOnlyBeTakenThroughUpdateMethod();
+            //CheckIfAttackButtonIsPressedSinceInputCanOnlyBeTakenThroughUpdateMethod();
             IfAttackButtonIsPressedAndEnemyHasBeenDetectedThenPushTheEnemy();
         }
         
@@ -45,6 +45,7 @@ public class Attack : MonoBehaviour
                 Vector2 pushBackForceToAddAsVector = new Vector2(playerFacingDirection * pushBackForceOfFirstAttack, 0f);
                 enemyRigidBody.AddForce(pushBackForceToAddAsVector, ForceMode2D.Impulse);
                 Debug.Log("pushed");
+                isAttackButtonPressed = false;
                 enemyRigidBody = null; // to free up the rigidbody reference
             }
         }

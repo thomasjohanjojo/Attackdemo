@@ -1013,7 +1013,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pushBackForceOfFirstAttack: 2
   isAttackButtonPressed: 0
-  DoPushAttackBooleanForTheWholeScript: 0
+  DoPushAttackBooleanForTheWholeScript: 1
   myAtackBoxCollider: {fileID: 1383130558}
   playerFacingDirection: 0
   enemyRigidBody: {fileID: 0}
