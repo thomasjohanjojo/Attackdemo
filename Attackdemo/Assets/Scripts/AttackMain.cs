@@ -29,10 +29,12 @@ public class AttackMain : MonoBehaviour
         if(pushBackScript.enemyRigidBody)
         {
             statusSciptOfEnemy = pushBackScript.enemyRigidBody.gameObject.GetComponent<Statuses>();
-            
-            if(Input.GetButtonDown("Fire1"))
+
+
+            if (Input.GetKeyDown(KeyCode.Mouse0) == true)
             {
-                attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted++;
+                Debug.Log("Main attack script is working");
+                attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted += 1;
 
                 if(attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted > 2)
                 {
