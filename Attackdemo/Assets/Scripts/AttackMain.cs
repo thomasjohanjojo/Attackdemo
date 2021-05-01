@@ -21,6 +21,7 @@ public class AttackMain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        pushBackScript.CheckIfAttackButtonIsPressedSinceInputCanOnlyBeTakenThroughUpdateMethod();
         
         AttackWhenAttackButtonIsPressed();
     }
@@ -33,7 +34,7 @@ public class AttackMain : MonoBehaviour
             Debug.Log("Entered the main attack script");
 
 
-            if (Input.GetAxisRaw("Fire1") > 0)
+            if (pushBackScript.isAttackButtonPressed == true)
             {
                 Debug.Log("Main attack script is working");
                 attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted += 1;
