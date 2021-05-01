@@ -21,6 +21,7 @@ public class AttackMain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         AttackWhenAttackButtonIsPressed();
     }
 
@@ -32,7 +33,7 @@ public class AttackMain : MonoBehaviour
             Debug.Log("Entered the main attack script");
 
 
-            if (Input.GetKeyDown(KeyCode.Mouse0) == true)
+            if (Input.GetAxisRaw("Fire1") > 0)
             {
                 Debug.Log("Main attack script is working");
                 attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted += 1;
