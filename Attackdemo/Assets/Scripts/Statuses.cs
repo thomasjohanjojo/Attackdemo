@@ -20,7 +20,7 @@ public class Statuses : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DecreaseHealthByTheNumber(10); // simply for testing    
+
     }
 
     // Update is called once per frame

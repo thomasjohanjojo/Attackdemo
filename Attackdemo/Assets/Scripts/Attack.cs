@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
+
     public Animator animator;
+
     public float pushBackForceOfFirstAttack;
 
     public bool isAttackButtonPressed;
@@ -15,6 +17,7 @@ public class Attack : MonoBehaviour
     public BoxCollider2D myAtackBoxCollider;
     public float playerFacingDirection;
     public Rigidbody2D enemyRigidBody;
+
     public bool isGrounded;
     [SerializeField]
     Transform groundCheck;
@@ -34,6 +37,8 @@ public class Attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         if ((Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"))) ||
                  (Physics2D.Linecast(transform.position, groundCheckR.position, 1 << LayerMask.NameToLayer("Ground"))) ||
                   (Physics2D.Linecast(transform.position, groundCheckL.position, 1 << LayerMask.NameToLayer("Ground"))))
@@ -68,6 +73,7 @@ public class Attack : MonoBehaviour
                 enemyRigidBody.AddForce(pushBackForceToAddAsVector, ForceMode2D.Impulse);
                 
                 Debug.Log("pushed");
+                isAttackButtonPressed = false;
                 
                 enemyRigidBody = null; // to free up the rigidbody reference
             }
@@ -78,7 +84,7 @@ public class Attack : MonoBehaviour
     {
         if (Input.GetAxisRaw("Fire1") > 0)
         {
-            isAttackButtonPressed = true;
+            
             if (!isGrounded)
             {
                 animator.Play("attack_JumpKick");
@@ -89,10 +95,7 @@ public class Attack : MonoBehaviour
             }
             
         }
-        else
-        {
-            isAttackButtonPressed = false;
-        }
+       
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -118,5 +121,7 @@ public class Attack : MonoBehaviour
             playerFacingDirection = -1;
 
         }
+
     }
-}
+
+    
