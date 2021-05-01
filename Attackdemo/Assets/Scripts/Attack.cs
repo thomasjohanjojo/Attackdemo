@@ -34,7 +34,7 @@ public class Attack : MonoBehaviour
         
     }
 
-    void IfAttackButtonIsPressedAndEnemyHasBeenDetectedThenPushTheEnemy()
+    public void IfAttackButtonIsPressedAndEnemyHasBeenDetectedThenPushTheEnemy()
     {
         if (enemyRigidBody)
         {
@@ -50,7 +50,7 @@ public class Attack : MonoBehaviour
         }
     }
 
-    void CheckIfAttackButtonIsPressedSinceInputCanOnlyBeTakenThroughUpdateMethod()
+    public void CheckIfAttackButtonIsPressedSinceInputCanOnlyBeTakenThroughUpdateMethod()
     {
         if(Input.GetAxisRaw("Fire1") > 0)
         {
