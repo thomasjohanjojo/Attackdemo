@@ -57,12 +57,14 @@ public class AttackMain : MonoBehaviour
                 if(attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted == 1)
                 {
                     statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfSecondAttack);
+                    //Do animation call in this line
                     statusSciptOfEnemy = null;
                 }
 
                 if(attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted == 2)
                 {
                     statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfThirdAttack);
+                    //Do animation call in this line
                     statusSciptOfEnemy = null;
                 }
 
