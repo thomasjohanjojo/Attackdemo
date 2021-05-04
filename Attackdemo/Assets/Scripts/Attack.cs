@@ -67,14 +67,14 @@ public class Attack : MonoBehaviour
 
             if (isAttackButtonPressed == true)
             {
-                
+
                 Vector2 pushBackForceToAddAsVector = new Vector2(playerFacingDirection * pushBackForceOfFirstAttack, 0f);
-                
+
                 enemyRigidBody.AddForce(pushBackForceToAddAsVector, ForceMode2D.Impulse);
-                
+
                 Debug.Log("pushed");
                 isAttackButtonPressed = false;
-                
+
                 enemyRigidBody = null; // to free up the rigidbody reference
             }
         }
@@ -84,7 +84,7 @@ public class Attack : MonoBehaviour
     {
         if (Input.GetAxisRaw("Fire1") > 0)
         {
-            
+
             if (!isGrounded)
             {
                 animator.Play("attack_JumpKick");
@@ -93,9 +93,9 @@ public class Attack : MonoBehaviour
             {
                 animator.Play("attack_Kick");
             }
-            
+
         }
-       
+
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -123,5 +123,6 @@ public class Attack : MonoBehaviour
         }
 
     }
+}
 
     

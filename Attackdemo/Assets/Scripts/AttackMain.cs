@@ -15,7 +15,7 @@ public class AttackMain : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted = -1;
+        attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted = 10;// any number greater than the topmost number
     }
 
     // Update is called once per frame
@@ -47,6 +47,7 @@ public class AttackMain : MonoBehaviour
                 if(attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted == 0)
                 {
                     pushBackScript.isAttackButtonPressed = true;
+                    Debug.Log("Attack button pressed part");
                     statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfFirstAttack);
                     //Do The animation call in this line
                     
