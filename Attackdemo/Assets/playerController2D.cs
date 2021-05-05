@@ -79,7 +79,8 @@ public class playerController2D : MonoBehaviour
         {
             if (isGrounded)
             {
-                if (animator.GetCurrentAnimatorStateInfo(0).IsName("attack_Kick"))
+                if ((animator.GetCurrentAnimatorStateInfo(0).IsName("attack_Kick")) || (animator.GetCurrentAnimatorStateInfo(0).IsName("attack_leftPunch"))
+                    || (animator.GetCurrentAnimatorStateInfo(0).IsName("attack_rightPunch")))
                 {
                     
                 }

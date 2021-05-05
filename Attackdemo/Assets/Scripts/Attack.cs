@@ -73,6 +73,14 @@ public class Attack : MonoBehaviour
                 enemyRigidBody.AddForce(pushBackForceToAddAsVector, ForceMode2D.Impulse);
 
                 Debug.Log("pushed");
+                if (!isGrounded)
+                {
+                    animator.Play("attack_JumpKick");
+                }
+                else
+                {
+                    animator.Play("attack_Kick");
+                }
                 isAttackButtonPressed = false;
 
                 enemyRigidBody = null; // to free up the rigidbody reference
@@ -85,14 +93,7 @@ public class Attack : MonoBehaviour
         if (Input.GetAxisRaw("Fire1") > 0)
         {
 
-            if (!isGrounded)
-            {
-                animator.Play("attack_JumpKick");
-            }
-            else
-            {
-                animator.Play("attack_Kick");
-            }
+           
 
         }
 
