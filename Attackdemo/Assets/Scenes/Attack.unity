@@ -2492,11 +2492,11 @@ MonoBehaviour:
   attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted: 0
   pushBackScript: {fileID: 1383130558}
   damageOfFirstAttack: 1
-  windingUpTimeOfFirstAttack: 1
+  windingUpTimeOfFirstAttack: 0.3
   damageOfSecondAttack: 5
-  windingUpTimeOfSecondAttack: 2
+  windingUpTimeOfSecondAttack: 0.7
   damageOfThirdAttack: 10
-  windingUpTimeOfThirdAttack: 3
+  windingUpTimeOfThirdAttack: 1
   statusSciptOfEnemy: {fileID: 0}
   animator: {fileID: 0}
 --- !u!1 &1420378211
