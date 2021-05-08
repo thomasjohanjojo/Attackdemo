@@ -70,12 +70,11 @@ public class AttackMain : MonoBehaviour
         }
     }
 
-    void IfDoThePushBooleanIsActivatedAndEnemyHasBeenDetectedThenPushTheEnemy()
+    public void IfDoThePushBooleanIsActivatedAndEnemyHasBeenDetectedThenPushTheEnemy()
     {
         if (enemyRigidBody)
         {
-            Debug.Log("Enemy rigidbody attached");
-
+            
             if (doThePush == true)
             {
 
@@ -99,7 +98,7 @@ public class AttackMain : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision) // This function is automatically called by unity like the update function
     {
         if (collision.tag == "Enemy")
         {
@@ -110,7 +109,7 @@ public class AttackMain : MonoBehaviour
         }
     }
 
-    void CheckPlayerFacingDirection()
+    public void CheckPlayerFacingDirection()
     {
         if (gameObject.transform.rotation.y == 0)
         {
