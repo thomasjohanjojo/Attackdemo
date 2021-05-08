@@ -9,9 +9,9 @@ public class Attack : MonoBehaviour
 
     public float pushBackForceOfFirstAttack;
 
-    public bool isAttackButtonPressed;
+    public bool doThePush;
 
-    public bool DoPushAttackBooleanForTheWholeScript = true;
+    
 
 
     public BoxCollider2D myAtackBoxCollider;
@@ -50,22 +50,21 @@ public class Attack : MonoBehaviour
         {
             isGrounded = false;
         }
-        if (DoPushAttackBooleanForTheWholeScript)
-        {
-            CheckPlayerFacingDirection();
-            
-            IfAttackButtonIsPressedAndEnemyHasBeenDetectedThenPushTheEnemy();
-        }
+        
+        
+        CheckPlayerFacingDirection();
+        IfDoThePushBooleanIsActivatedAndEnemyHasBeenDetectedThenPushTheEnemy();
+        
 
     }
 
-    void IfAttackButtonIsPressedAndEnemyHasBeenDetectedThenPushTheEnemy()
+    void IfDoThePushBooleanIsActivatedAndEnemyHasBeenDetectedThenPushTheEnemy()
     {
         if (enemyRigidBody)
         {
             Debug.Log("Enemy rigidbody attached");
 
-            if (isAttackButtonPressed == true)
+            if (doThePush == true)
             {
 
                 Vector2 pushBackForceToAddAsVector = new Vector2(playerFacingDirection * pushBackForceOfFirstAttack, 0f);
@@ -81,7 +80,7 @@ public class Attack : MonoBehaviour
                 {
                     animator.Play("attack_Kick");
                 }
-                isAttackButtonPressed = false;
+                doThePush = false;
 
                 enemyRigidBody = null; // to free up the rigidbody reference
             }

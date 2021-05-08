@@ -58,7 +58,7 @@ public class AttackMain : MonoBehaviour
                     playerControllerReference.canMove = false;
                     canAttack = false;
                     yield return new WaitForSeconds(windingUpTimeOfFirstAttack);
-                    pushBackScript.isAttackButtonPressed = true;
+                    pushBackScript.doThePush = true;
                     Debug.Log("Attack button pressed part");
                     statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfFirstAttack);
 
