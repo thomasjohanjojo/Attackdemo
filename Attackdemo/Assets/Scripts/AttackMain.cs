@@ -4,46 +4,38 @@ using UnityEngine;
 
 public class AttackMain : MonoBehaviour
 {
-    public bool canAttack = true;
+
     public playerController2D playerControllerReference;
+    public Animator animatorOfThePlayer;
+    public BoxCollider2D myAtackBoxCollider;
 
+    private Statuses statusSciptOfEnemy;
+    private Rigidbody2D enemyRigidBody;
+    private bool doThePush;
+    private bool isGrounded;
+    private bool canAttack = true;
+    private int attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted;
+    private float playerFacingDirection;
 
-
+         
+    
+    public Transform groundCheck;
+    public Transform groundCheckR;
+    public Transform groundCheckL;
 
     public float pushBackForceOfFirstAttack;
-    public bool doThePush;
-    public BoxCollider2D myAtackBoxCollider;
-    public float playerFacingDirection;
-    public Rigidbody2D enemyRigidBody;
-
-    public bool isGrounded;
-    [SerializeField]
-    Transform groundCheck;
-    [SerializeField]
-    Transform groundCheckR;
-    [SerializeField]
-    Transform groundCheckL;
-
-
-
-
-
-
-
-    public int attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted;
     public int damageOfFirstAttack;
     public float windingUpTimeOfFirstAttack;
     public int damageOfSecondAttack;
     public float windingUpTimeOfSecondAttack;
     public int damageOfThirdAttack;
     public float windingUpTimeOfThirdAttack;
-    public Statuses statusSciptOfEnemy;
-    public Animator animator;
+    
     // Start is called before the first frame update
     void Start()
     {
         attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted = 10;// any number greater than the topmost number
-        animator = GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
@@ -92,11 +84,11 @@ public class AttackMain : MonoBehaviour
                 Debug.Log("pushed");
                 if (!isGrounded)
                 {
-                    animator.Play("attack_JumpKick");
+                    animatorOfThePlayer.Play("attack_JumpKick");
                 }
                 else
                 {
-                    animator.Play("attack_Kick");
+                    animatorOfThePlayer.Play("attack_Kick");
                 }
                 doThePush = false;
 
@@ -181,7 +173,7 @@ public class AttackMain : MonoBehaviour
                     playerControllerReference.canMove = false;
                     yield return new WaitForSeconds(windingUpTimeOfSecondAttack);
                     statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfSecondAttack);
-                    animator.Play("attack_leftPunch");
+                    animatorOfThePlayer.Play("attack_leftPunch");
                     Debug.Log("Doing second attack");
                     statusSciptOfEnemy = null;
                     playerControllerReference.canMove = true;
@@ -194,7 +186,7 @@ public class AttackMain : MonoBehaviour
                     playerControllerReference.canMove = false;
                     yield return new WaitForSeconds(windingUpTimeOfThirdAttack);
                     statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfThirdAttack);
-                    animator.Play("attack_rightPunch");
+                    animatorOfThePlayer.Play("attack_rightPunch");
                     Debug.Log("Doing third attack");
                     statusSciptOfEnemy = null;
                     playerControllerReference.canMove = true;
