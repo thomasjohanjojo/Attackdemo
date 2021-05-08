@@ -5,7 +5,7 @@ using UnityEngine;
 public class AttackMain : MonoBehaviour
 {
 
-    public playerController2D playerControllerReference;
+    public playerController2D playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean;
     public Animator animatorOfThePlayer;
     public BoxCollider2D myAtackBoxCollider;
 
@@ -153,7 +153,7 @@ public class AttackMain : MonoBehaviour
 
                 if(attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted == 0)
                 {
-                    playerControllerReference.canMove = false;
+                    playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean.canMove = false;
                     canAttack = false;
                     yield return new WaitForSeconds(windingUpTimeOfFirstAttack);
                     doThePush = true;
@@ -163,33 +163,33 @@ public class AttackMain : MonoBehaviour
                     
                     
                     statusSciptOfEnemy = null;
-                    playerControllerReference.canMove = true;
+                    playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean.canMove = true;
                     canAttack = true;
                 }
 
                 if(attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted == 1)
                 {
                     canAttack = false;
-                    playerControllerReference.canMove = false;
+                    playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean.canMove = false;
                     yield return new WaitForSeconds(windingUpTimeOfSecondAttack);
                     statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfSecondAttack);
                     animatorOfThePlayer.Play("attack_leftPunch");
                     Debug.Log("Doing second attack");
                     statusSciptOfEnemy = null;
-                    playerControllerReference.canMove = true;
+                    playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean.canMove = true;
                     canAttack = true;
                 }
 
                 if(attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted == 2)
                 {
                     canAttack = false;
-                    playerControllerReference.canMove = false;
+                    playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean.canMove = false;
                     yield return new WaitForSeconds(windingUpTimeOfThirdAttack);
                     statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfThirdAttack);
                     animatorOfThePlayer.Play("attack_rightPunch");
                     Debug.Log("Doing third attack");
                     statusSciptOfEnemy = null;
-                    playerControllerReference.canMove = true;
+                    playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean.canMove = true;
                     canAttack = true;
                 }
 
