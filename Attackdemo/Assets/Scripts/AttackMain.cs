@@ -49,9 +49,11 @@ public class AttackMain : MonoBehaviour
     {
         if (canAttack)
         {
-            StartCoroutine(AttackWhenverAttackButtonIsPressed());
+            StartCoroutine(AttackWhenverAttackButtonIsPressedAndEnemyRigidbodyWithAnAttachedStatusScriptIsAvailable());
         }
     }
+
+
 
     public void CheckIfPlayerIsGrounded()
     {
@@ -68,19 +70,27 @@ public class AttackMain : MonoBehaviour
         }
     }
 
-    public void IfEnemyHasBeenDetectedThenPushTheEnemy()
+
+
+
+
+    public void IfEnemyHasBeenDetectedThenPushTheEnemyAndAlsoPlayTheAppropriateAnimation()
     {
         if (enemyRigidBody)
         {
-
-            Vector2 pushBackForceToAddAsVector = new Vector2(playerFacingDirection * pushBackForceOfFirstAttack, 0f);
-            enemyRigidBody.AddForce(pushBackForceToAddAsVector, ForceMode2D.Impulse);
+            CalculateTheForceAsVectorAndAddItToTheEnemyRigicbody();
 
             PlayAppropriateAnimationDependentOnPlayerIsGroundedBoolean();
 
             enemyRigidBody = null;
 
         }
+    }
+
+    private void CalculateTheForceAsVectorAndAddItToTheEnemyRigicbody()
+    {
+        Vector2 pushBackForceToAddAsVector = new Vector2(playerFacingDirection * pushBackForceOfFirstAttack, 0f);
+        enemyRigidBody.AddForce(pushBackForceToAddAsVector, ForceMode2D.Impulse);
     }
 
     private void PlayAppropriateAnimationDependentOnPlayerIsGroundedBoolean()
@@ -95,6 +105,7 @@ public class AttackMain : MonoBehaviour
         }
     }
 
+
     private void OnTriggerStay2D(Collider2D collision) // This function is automatically called by unity like the update function
     {
         if (collision.tag == "Enemy")
@@ -105,6 +116,7 @@ public class AttackMain : MonoBehaviour
 
         }
     }
+
 
     public void CheckPlayerFacingDirection()
     {
@@ -125,7 +137,7 @@ public class AttackMain : MonoBehaviour
 
 
 
-    public IEnumerator AttackWhenverAttackButtonIsPressed()
+    public IEnumerator AttackWhenverAttackButtonIsPressedAndEnemyRigidbodyWithAnAttachedStatusScriptIsAvailable()
     {
         if(enemyRigidBody)
         {
@@ -152,7 +164,7 @@ public class AttackMain : MonoBehaviour
 
                     yield return new WaitForSeconds(windingUpTimeOfFirstAttack);
 
-                    IfEnemyHasBeenDetectedThenPushTheEnemy();
+                    IfEnemyHasBeenDetectedThenPushTheEnemyAndAlsoPlayTheAppropriateAnimation();
                     statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfFirstAttack);
 
                     statusSciptOfEnemy = null;
