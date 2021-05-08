@@ -53,7 +53,7 @@ public class Attack : MonoBehaviour
         if (DoPushAttackBooleanForTheWholeScript)
         {
             CheckPlayerFacingDirection();
-            CheckIfAttackButtonIsPressedSinceInputCanOnlyBeTakenThroughUpdateMethod();
+            
             IfAttackButtonIsPressedAndEnemyHasBeenDetectedThenPushTheEnemy();
         }
 
@@ -88,16 +88,7 @@ public class Attack : MonoBehaviour
         }
     }
 
-    void CheckIfAttackButtonIsPressedSinceInputCanOnlyBeTakenThroughUpdateMethod()
-    {
-        if (Input.GetAxisRaw("Fire1") > 0)
-        {
-
-           
-
-        }
-
-    }
+    
 
     private void OnTriggerStay2D(Collider2D collision)
     {

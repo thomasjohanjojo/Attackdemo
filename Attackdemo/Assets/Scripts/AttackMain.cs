@@ -45,7 +45,7 @@ public class AttackMain : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                Debug.Log("Main attack script is working");
+                
                 attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted += 1;
 
                 if(attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted > 2)
