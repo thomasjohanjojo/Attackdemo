@@ -11,10 +11,9 @@ public class AttackMain : MonoBehaviour
 
     private Statuses statusSciptOfEnemy;
     private Rigidbody2D enemyRigidBody;
-    private bool doThePush;
     private bool isGrounded;
     private bool canAttack = true;
-    private int attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted;
+    private int attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted = 10; // In case the user doesn't input a number. This represents the number of attacks, starting from zero
     private float playerFacingDirection;
 
          
@@ -34,7 +33,7 @@ public class AttackMain : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted = 10;// any number greater than the topmost number
+     
         
     }
 
@@ -43,7 +42,6 @@ public class AttackMain : MonoBehaviour
     {
         CheckIfPlayerIsGrounded();
         CheckPlayerFacingDirection();
-        IfDoThePushBooleanIsActivatedAndEnemyHasBeenDetectedThenPushTheEnemy();
         CheckIfPlayerCanAttackAndExecuteAttackIfThePlayerCan();
     }
 
@@ -51,7 +49,7 @@ public class AttackMain : MonoBehaviour
     {
         if (canAttack)
         {
-            StartCoroutine(AttackWhenAttackButtonIsPressed());
+            StartCoroutine(AttackWhenverAttackButtonIsPressed());
         }
     }
 
@@ -70,31 +68,30 @@ public class AttackMain : MonoBehaviour
         }
     }
 
-    public void IfDoThePushBooleanIsActivatedAndEnemyHasBeenDetectedThenPushTheEnemy()
+    public void IfEnemyHasBeenDetectedThenPushTheEnemy()
     {
         if (enemyRigidBody)
         {
-            
-            if (doThePush == true)
-            {
 
-                Vector2 pushBackForceToAddAsVector = new Vector2(playerFacingDirection * pushBackForceOfFirstAttack, 0f);
+            Vector2 pushBackForceToAddAsVector = new Vector2(playerFacingDirection * pushBackForceOfFirstAttack, 0f);
+            enemyRigidBody.AddForce(pushBackForceToAddAsVector, ForceMode2D.Impulse);
 
-                enemyRigidBody.AddForce(pushBackForceToAddAsVector, ForceMode2D.Impulse);
+            PlayAppropriateAnimationDependentOnPlayerIsGroundedBoolean();
 
-                
-                if (!isGrounded)
-                {
-                    animatorOfThePlayer.Play("attack_JumpKick");
-                }
-                else
-                {
-                    animatorOfThePlayer.Play("attack_Kick");
-                }
-                doThePush = false;
+            enemyRigidBody = null;
 
-                enemyRigidBody = null; 
-            }
+        }
+    }
+
+    private void PlayAppropriateAnimationDependentOnPlayerIsGroundedBoolean()
+    {
+        if (!isGrounded)
+        {
+            animatorOfThePlayer.Play("attack_JumpKick");
+        }
+        else
+        {
+            animatorOfThePlayer.Play("attack_Kick");
         }
     }
 
@@ -128,7 +125,7 @@ public class AttackMain : MonoBehaviour
 
 
 
-    public IEnumerator AttackWhenAttackButtonIsPressed()
+    public IEnumerator AttackWhenverAttackButtonIsPressed()
     {
         if(enemyRigidBody)
         {
@@ -152,9 +149,12 @@ public class AttackMain : MonoBehaviour
                 {
                     playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean.canMove = false;
                     canAttack = false;
+
                     yield return new WaitForSeconds(windingUpTimeOfFirstAttack);
-                    doThePush = true;
+
+                    IfEnemyHasBeenDetectedThenPushTheEnemy();
                     statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfFirstAttack);
+
                     statusSciptOfEnemy = null;
                     playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean.canMove = true;
                     canAttack = true;
@@ -164,9 +164,12 @@ public class AttackMain : MonoBehaviour
                 {
                     canAttack = false;
                     playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean.canMove = false;
+
                     yield return new WaitForSeconds(windingUpTimeOfSecondAttack);
+
                     statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfSecondAttack);
                     animatorOfThePlayer.Play("attack_leftPunch");
+
                     statusSciptOfEnemy = null;
                     playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean.canMove = true;
                     canAttack = true;
@@ -176,9 +179,12 @@ public class AttackMain : MonoBehaviour
                 {
                     canAttack = false;
                     playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean.canMove = false;
+
                     yield return new WaitForSeconds(windingUpTimeOfThirdAttack);
+
                     statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfThirdAttack);
                     animatorOfThePlayer.Play("attack_rightPunch");
+
                     statusSciptOfEnemy = null;
                     playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean.canMove = true;
                     canAttack = true;
