@@ -94,7 +94,7 @@ public class AttackMain : MonoBehaviour
                 }
                 doThePush = false;
 
-                enemyRigidBody = null; // to free up the rigidbody reference
+                enemyRigidBody = null; 
             }
         }
     }
@@ -142,22 +142,20 @@ public class AttackMain : MonoBehaviour
                 
                 attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted += 1;
 
-                if(attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted > 2)
+
+                if (attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted > 2)
                 {
                     attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted = 0;
                 }
+                                             
 
-                if(attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted == 0)
+                if (attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted == 0)
                 {
                     playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean.canMove = false;
                     canAttack = false;
                     yield return new WaitForSeconds(windingUpTimeOfFirstAttack);
                     doThePush = true;
-                    Debug.Log("Attack button pressed part");
                     statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfFirstAttack);
-
-                    
-                    
                     statusSciptOfEnemy = null;
                     playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean.canMove = true;
                     canAttack = true;
@@ -170,7 +168,6 @@ public class AttackMain : MonoBehaviour
                     yield return new WaitForSeconds(windingUpTimeOfSecondAttack);
                     statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfSecondAttack);
                     animatorOfThePlayer.Play("attack_leftPunch");
-                    Debug.Log("Doing second attack");
                     statusSciptOfEnemy = null;
                     playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean.canMove = true;
                     canAttack = true;
@@ -183,7 +180,6 @@ public class AttackMain : MonoBehaviour
                     yield return new WaitForSeconds(windingUpTimeOfThirdAttack);
                     statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfThirdAttack);
                     animatorOfThePlayer.Play("attack_rightPunch");
-                    Debug.Log("Doing third attack");
                     statusSciptOfEnemy = null;
                     playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean.canMove = true;
                     canAttack = true;
