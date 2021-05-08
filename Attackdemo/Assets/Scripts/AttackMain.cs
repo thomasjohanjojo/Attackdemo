@@ -127,12 +127,6 @@ public class AttackMain : MonoBehaviour
 
 
 
-
-
-
-
-
-
     public IEnumerator AttackWhenAttackButtonIsPressed()
     {
         if(enemyRigidBody)
