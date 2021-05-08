@@ -42,16 +42,18 @@ public class AttackMain : MonoBehaviour
     void Update()
     {
         CheckIfPlayerIsGrounded();
-
         CheckPlayerFacingDirection();
         IfDoThePushBooleanIsActivatedAndEnemyHasBeenDetectedThenPushTheEnemy();
+        CheckIfPlayerCanAttackAndExecuteAttackIfThePlayerCan();
+    }
 
+    private void CheckIfPlayerCanAttackAndExecuteAttackIfThePlayerCan()
+    {
         if (canAttack)
         {
             StartCoroutine(AttackWhenAttackButtonIsPressed());
         }
     }
-
 
     public void CheckIfPlayerIsGrounded()
     {
@@ -81,7 +83,7 @@ public class AttackMain : MonoBehaviour
 
                 enemyRigidBody.AddForce(pushBackForceToAddAsVector, ForceMode2D.Impulse);
 
-                Debug.Log("pushed");
+                
                 if (!isGrounded)
                 {
                     animatorOfThePlayer.Play("attack_JumpKick");
