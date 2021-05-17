@@ -22,14 +22,32 @@ public class MovingPlatformMainScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transform.position.y >= upperYAxisLimitOfPlatform)
+        MoveThePlatformBySettingAndChangingTheVelocityAccordingToTheYLimits();
+    }
+
+    private void MoveThePlatformBySettingAndChangingTheVelocityAccordingToTheYLimits()
+    {
+        if (transform.position.y >= upperYAxisLimitOfPlatform)
         {
             rigidbody2DOfThisPlatform.velocity = new Vector2(0f, -velocityOfPlatform);
         }
 
-        else if(transform.position.y <= (upperYAxisLimitOfPlatform - lowerYAxisLimitOfPlatform))
+        else if (transform.position.y <= (upperYAxisLimitOfPlatform - lowerYAxisLimitOfPlatform))
         {
             rigidbody2DOfThisPlatform.velocity = new Vector2(0f, velocityOfPlatform);
         }
     }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        collision.transform.SetParent(transform);
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        collision.transform.SetParent(null);
+    }
+
+    
 }
