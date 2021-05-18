@@ -17,13 +17,14 @@ public class MovingPlatformMainScript : MonoBehaviour
     public Vector2 theVector2OfLowerWaypoint;
     public Vector2 theVector2OfUpperWaypoint;
 
+    public bool moveDownwards;
+    public bool moveUpwards;
 
     // Start is called before the first frame update
     void Start()
     {
-        
-        theVector2OfUpperWaypoint = new Vector2(waypointUpper.position.x, waypointUpper.position.y);
-        transform.position = Vector2.MoveTowards(transform.position, theVector2OfUpperWaypoint, speedOfPlatform * Time.deltaTime);
+
+        moveUpwards = true;
 
     }
 
@@ -33,23 +34,42 @@ public class MovingPlatformMainScript : MonoBehaviour
     void Update()
     {
         MoveThePlatformBySettingAndChangingTheVelocityAccordingToTheYLimits();
+        
+        if(moveUpwards == true)
+        {
+            MoveUpwards();
+        }
+
+        else if(moveDownwards == true)
+        {
+            MoveDownwards();
+        }
     }
 
     private void MoveThePlatformBySettingAndChangingTheVelocityAccordingToTheYLimits()
     {
-        if (transform.position.y >= waypointUpper.position.y)
+        if (transform.position.y > waypointUpper.position.y)
         {
-            theVector2OfLowerWaypoint = new Vector2(waypointLower.position.x, waypointLower.position.y);
-            transform.position = Vector2.MoveTowards(transform.position, theVector2OfLowerWaypoint, speedOfPlatform * Time.deltaTime);
+            moveUpwards = false;
+            moveDownwards = true;
         }
 
-        else if (transform.position.y <= waypointLower.position.y)
+        else if (transform.position.y < waypointLower.position.y)
         {
-            theVector2OfUpperWaypoint = new Vector2(waypointUpper.position.x, waypointUpper.position.y);
-            transform.position = Vector2.MoveTowards(transform.position, theVector2OfUpperWaypoint, speedOfPlatform * Time.deltaTime);
+            moveDownwards = false;
+            moveUpwards = true;
         }
     }
 
+    private void MoveUpwards()
+    {
+        transform.Translate(Vector3.up * Time.deltaTime * speedOfPlatform);
+    }
+
+    private void MoveDownwards()
+    {
+        transform.Translate(Vector3.down * Time.deltaTime * speedOfPlatform);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
