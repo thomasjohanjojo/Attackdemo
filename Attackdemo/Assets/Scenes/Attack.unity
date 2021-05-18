@@ -263,7 +263,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 211315783}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.2590322, y: -4.3243093, z: 0}
+  m_LocalPosition: {x: 5.2590322, y: -4.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 93087964}
@@ -2172,7 +2172,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1383130550}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.85, y: -1.64, z: 0}
+  m_LocalPosition: {x: 3.48, y: 5.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 821092051}
@@ -2714,11 +2714,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaf41f8beb985d94eb7bdad9a48e2694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedOfPlatform: 5
-  waypointUpper: {fileID: 1947656249}
-  waypointLower: {fileID: 211315784}
-  theVector2OfLowerWaypoint: {x: 0, y: 0}
-  theVector2OfUpperWaypoint: {x: 0, y: 0}
+  movementSpeedOfPlatform: 3
+  transformOfUpperWayPoint: {fileID: 1947656249}
+  transformOfLowerWayPoint: {fileID: 211315784}
 --- !u!61 &1559833883
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3380,7 +3378,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1947656248}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.2590322, y: 2.6256905, z: 0}
+  m_LocalPosition: {x: 5.2590322, y: 1.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 93087964}

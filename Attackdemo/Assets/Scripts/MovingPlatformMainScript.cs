@@ -8,17 +8,17 @@ public class MovingPlatformMainScript : MonoBehaviour
     
 
     
-    public float speedOfPlatform;
+    public float movementSpeedOfPlatform;
     
 
-    public Transform waypointUpper;
-    public Transform waypointLower;
+    public Transform transformOfUpperWayPoint;
+    public Transform transformOfLowerWayPoint;
 
-    public Vector2 theVector2OfLowerWaypoint;
-    public Vector2 theVector2OfUpperWaypoint;
+    private Vector2 theVector2OfLowerWaypoint;
+    private Vector2 theVector2OfUpperWaypoint;
 
-    public bool moveDownwards;
-    public bool moveUpwards;
+    private bool moveDownwards;
+    private bool moveUpwards;
 
     // Start is called before the first frame update
     void Start()
@@ -33,28 +33,32 @@ public class MovingPlatformMainScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveThePlatformBySettingAndChangingTheVelocityAccordingToTheYLimits();
-        
-        if(moveUpwards == true)
+        CheckAndSetTheTwoControlBooleansAccordingToTheYLimits();
+        TheActualMovementFunctionAccordingToTheStatusOfTheControlBooleans();
+    }
+
+    private void TheActualMovementFunctionAccordingToTheStatusOfTheControlBooleans()
+    {
+        if (moveUpwards == true)
         {
             MoveUpwards();
         }
 
-        else if(moveDownwards == true)
+        else if (moveDownwards == true)
         {
             MoveDownwards();
         }
     }
 
-    private void MoveThePlatformBySettingAndChangingTheVelocityAccordingToTheYLimits()
+    private void CheckAndSetTheTwoControlBooleansAccordingToTheYLimits()
     {
-        if (transform.position.y > waypointUpper.position.y)
+        if (transform.position.y > transformOfUpperWayPoint.position.y)
         {
             moveUpwards = false;
             moveDownwards = true;
         }
 
-        else if (transform.position.y < waypointLower.position.y)
+        else if (transform.position.y < transformOfLowerWayPoint.position.y)
         {
             moveDownwards = false;
             moveUpwards = true;
@@ -63,12 +67,12 @@ public class MovingPlatformMainScript : MonoBehaviour
 
     private void MoveUpwards()
     {
-        transform.Translate(Vector3.up * Time.deltaTime * speedOfPlatform);
+        transform.Translate(Vector3.up * Time.deltaTime * movementSpeedOfPlatform);
     }
 
     private void MoveDownwards()
     {
-        transform.Translate(Vector3.down * Time.deltaTime * speedOfPlatform);
+        transform.Translate(Vector3.down * Time.deltaTime * movementSpeedOfPlatform);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
