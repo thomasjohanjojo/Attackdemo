@@ -5,19 +5,29 @@ using UnityEngine;
 public class MovingPlatformMainScript : MonoBehaviour
 {
 
-    public Rigidbody2D rigidbody2DOfThisPlatform;
+    
 
-    public float lowerYAxisLimitOfPlatform;
-    public float velocityOfPlatform;
-    [SerializeField] private float upperYAxisLimitOfPlatform;
+    
+    public float speedOfPlatform;
+    
+
+    public Transform waypointUpper;
+    public Transform waypointLower;
+
+    public Vector2 theVector2OfLowerWaypoint;
+    public Vector2 theVector2OfUpperWaypoint;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        upperYAxisLimitOfPlatform = transform.position.y;
+        
+        theVector2OfUpperWaypoint = new Vector2(waypointUpper.position.x, waypointUpper.position.y);
+        transform.position = Vector2.MoveTowards(transform.position, theVector2OfUpperWaypoint, speedOfPlatform * Time.deltaTime);
 
     }
+
+
 
     // Update is called once per frame
     void Update()
@@ -27,14 +37,16 @@ public class MovingPlatformMainScript : MonoBehaviour
 
     private void MoveThePlatformBySettingAndChangingTheVelocityAccordingToTheYLimits()
     {
-        if (transform.position.y >= upperYAxisLimitOfPlatform)
+        if (transform.position.y >= waypointUpper.position.y)
         {
-            rigidbody2DOfThisPlatform.velocity = new Vector2(0f, -velocityOfPlatform);
+            theVector2OfLowerWaypoint = new Vector2(waypointLower.position.x, waypointLower.position.y);
+            transform.position = Vector2.MoveTowards(transform.position, theVector2OfLowerWaypoint, speedOfPlatform * Time.deltaTime);
         }
 
-        else if (transform.position.y <= (upperYAxisLimitOfPlatform - lowerYAxisLimitOfPlatform))
+        else if (transform.position.y <= waypointLower.position.y)
         {
-            rigidbody2DOfThisPlatform.velocity = new Vector2(0f, velocityOfPlatform);
+            theVector2OfUpperWaypoint = new Vector2(waypointUpper.position.x, waypointUpper.position.y);
+            transform.position = Vector2.MoveTowards(transform.position, theVector2OfUpperWaypoint, speedOfPlatform * Time.deltaTime);
         }
     }
 
